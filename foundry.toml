@@ -8,3 +8,8 @@ libs = ["lib"]
 ffi = true
 fs_permissions = [{ access = "read", path = "./broadcast" }]
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
+solc_version = "0.8.19"
+[profile.default.zksync]
+ffi = true
+zksync = true
+suppressed_warnings = ["assemblycreate"]
