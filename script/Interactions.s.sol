@@ -21,24 +21,15 @@ contract FundFundMe is Script {
 
     function run() external {
         //       uint256 SEND_VALUE = 0.1 ether;
-        address mostRecentlyDeployed = DevOpsTools.get_most_recent_deployment(
-            "FundMe",
-            block.chainid
-        );
-        console.log(
-            "Retrieved most recent FundMe deployment at:",
-            mostRecentlyDeployed
-        );
+        address mostRecentlyDeployed = DevOpsTools.get_most_recent_deployment("FundMe", block.chainid);
+        console.log("Retrieved most recent FundMe deployment at:", mostRecentlyDeployed);
         // Check for invalid address
         if (mostRecentlyDeployed == address(0)) {
             revert("No FundMe deployment found for this chain. Deploy first!");
         }
 
         // Verify the address contains contract code
-        require(
-            mostRecentlyDeployed.code.length > 0,
-            "Address is not a contract"
-        );
+        require(mostRecentlyDeployed.code.length > 0, "Address is not a contract");
 
         // Fund the contract
 
@@ -49,25 +40,16 @@ contract FundFundMe is Script {
 
 contract WithdrawFundMe is Script {
     function run() external {
-        address mostRecentlyDeployed = DevOpsTools.get_most_recent_deployment(
-            "FundMe",
-            block.chainid
-        );
+        address mostRecentlyDeployed = DevOpsTools.get_most_recent_deployment("FundMe", block.chainid);
 
-        console.log(
-            "Retrieved most recent FundMe deployment at:",
-            mostRecentlyDeployed
-        );
+        console.log("Retrieved most recent FundMe deployment at:", mostRecentlyDeployed);
         // Check for invalid address
         if (mostRecentlyDeployed == address(0)) {
             revert("No FundMe deployment found for this chain. Deploy first!");
         }
 
         // Verify the address contains contract code
-        require(
-            mostRecentlyDeployed.code.length > 0,
-            "Address is not a contract"
-        );
+        require(mostRecentlyDeployed.code.length > 0, "Address is not a contract");
 
         // Fund the contract
         vm.startBroadcast();
